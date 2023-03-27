@@ -29,9 +29,9 @@ const postsController = {
     },
     create: async (req, res) => {
         try {
-            const { title, content } = req.body
-            const sql = "insert into posts (title, content) values (?, ?)"
-            const [rows, fields] = await pool.query(sql, [title, content])
+            const { Product_name, location, specialization, contact_number, description } = req.body
+            const sql = "insert into posts (Product_name, location, specialization, contact_number, description) values (?, ?)"
+            const [rows, fields] = await pool.query(sql, [Product_name, location, specialization, contact_number, description])
             res.json({
                 data: rows
             })
@@ -44,10 +44,10 @@ const postsController = {
     },
     update: async (req, res) => {
         try {
-            const { title, content } = req.body
+            const { Product_name, location, specialization, contact_number, description } = req.body
             const { id } = req.params
-            const sql = "update posts set title = ?, content = ? where id = ?"
-            const [rows, fields] = await pool.query(sql, [title, content, id])
+            const sql = "update posts set Product_name = ?, location = ?, specialization = ?, contact_number = ?, description= ? where id = ?"
+            const [rows, fields] = await pool.query(sql, [Product_name, location, specialization, contact_number, description, id])
             res.json({
                 data: rows
             })
