@@ -3,7 +3,9 @@ const app = express();
 const cors = require("cors");
 
 require('dotenv').config()
-cors.use({origin:"*"})
+app.use(cors({
+    origin: "*",
+}))
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 
