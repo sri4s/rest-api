@@ -4,6 +4,7 @@ const postsController = {
         try {
             const [rows, fields] = await pool.query("select * from posts")
             res.json({
+                status: "success",
                 data: rows
             })
         } catch (error) {
@@ -18,6 +19,7 @@ const postsController = {
             const { id } = req.params
             const [rows, fields] = await pool.query("select * from posts where id = ?", [id])
             res.json({
+                status: "success",
                 data: rows
             })
         } catch (error) {
@@ -29,9 +31,9 @@ const postsController = {
     },
     create: async (req, res) => {
         try {
-            const {Product_name, location, specialization, contact_number, description} = req.body
-            const sql = "insert into posts (Product_name, location, specialization, contact_number, description) values (?, ?, ?, ?, ?)"
-            const [rows, fields] = await pool.query(sql, [Product_name, location, specialization, contact_number, description])
+            const {Product_name, category, location, specialization, contact_number, description} = req.body
+            const sql = "insert into posts (Product_name, category, location, specialization, contact_number, description) values (?, ?, ?, ?, ?, ?)"
+            const [rows, fields] = await pool.query(sql, [Product_name, category, location, specialization, contact_number, description])
             res.json({
                 status: "success",
                 data: rows
@@ -45,11 +47,12 @@ const postsController = {
     },
     update: async (req, res) => {
         try {
-            const { Product_name, location, specialization, contact_number, description } = req.body
+            const { Product_name, category, location, specialization, contact_number, description } = req.body
             const { id } = req.params
-            const sql = "update posts set Product_name = ?, location = ?, specialization = ?, contact_number = ?, description= ? where id = ?"
-            const [rows, fields] = await pool.query(sql, [Product_name, location, specialization, contact_number, description, id])
+            const sql = "update posts set Product_name = ?, category = ?, location = ?, specialization = ?, contact_number = ?, description= ? where id = ?"
+            const [rows, fields] = await pool.query(sql, [Product_name, category, location, specialization, contact_number, description, id])
             res.json({
+                status: "success",
                 data: rows
             })
         } catch (error) {
@@ -64,6 +67,7 @@ const postsController = {
             const { id } = req.params
             const [rows, fields] = await pool.query("delete from posts where id = ?", [id])
             res.json({
+                status: "success",
                 data: rows
             })
         } catch (error) {
