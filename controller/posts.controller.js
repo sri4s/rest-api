@@ -33,6 +33,7 @@ const postsController = {
             const sql = "insert into posts (Product_name, location, specialization, contact_number, description) values (?, ?, ?, ?, ?)"
             const [rows, fields] = await pool.query(sql, [Product_name, location, specialization, contact_number, description])
             res.json({
+                status: "success",
                 data: rows
             })
         } catch (error) {
