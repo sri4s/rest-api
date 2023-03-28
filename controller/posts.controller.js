@@ -31,7 +31,7 @@ const postsController = {
         try {
             const {Product_name, location, specialization, contact_number, description} = req.body
             const sql = "insert into posts (Product_name, location, specialization, contact_number, description) values (?, ?)"
-            const [rows, fields] = await pool.query(sql, [Product_name, location, specialization, contact_number, description])
+            const [rows, fields] = await pool.query(sql, [Product_name, location, specialization, contact_number, description, id])
             res.json({
                 data: rows
             })
